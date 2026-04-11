@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 export default function Home() {
@@ -15,9 +16,12 @@ export default function Home() {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <button className="rounded-xl bg-[#8b7cf6] px-6 py-3 font-semibold transition hover:opacity-90">
-            Create Your Story
-          </button>
+          <Link
+  href="/create"
+  className="rounded-xl bg-[#8b7cf6] px-6 py-3 font-semibold text-white transition hover:opacity-90"
+>
+  Create Your Story
+</Link>
           <button className="rounded-xl border border-white/30 bg-white px-6 py-3 font-semibold text-[#1f1b35] transition hover:opacity-90">
             View Library
           </button>
