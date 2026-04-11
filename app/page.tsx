@@ -21,7 +21,7 @@ export default function Home() {
           <div className="mb-5 text-4xl">🌙✨</div>
 
           <h1 className="text-5xl font-bold leading-tight tracking-tight md:text-6xl">
-           Create Tonight's Dreams
+            Create Tonight's Dreams
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
@@ -156,6 +156,88 @@ export default function Home() {
               <p className="mt-3 text-sm leading-6 text-gray-500">
                 No prep, no thinking — just press generate.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-20 max-w-5xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-gray-900">
+              Trusted by tired parents
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-gray-600">
+              Built to make bedtime feel calmer, easier, and a little more magical.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="rounded-3xl bg-white p-8 shadow-md">
+              <div className="mb-4 text-yellow-500">★★★★★</div>
+              <p className="text-base leading-7 text-gray-700">
+                “My daughter asked for a Snorii story again the very next night.
+                It instantly felt more personal than reading the same book again.”
+              </p>
+              <p className="mt-5 text-sm font-medium text-gray-500">
+                Sarah, mum of one
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-white p-8 shadow-md">
+              <div className="mb-4 text-yellow-500">★★★★★</div>
+              <p className="text-base leading-7 text-gray-700">
+                “This takes the pressure off when you’re exhausted and still want
+                bedtime to feel special.”
+              </p>
+              <p className="mt-5 text-sm font-medium text-gray-500">
+                James, dad of two
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-white p-8 shadow-md">
+              <div className="mb-4 text-yellow-500">★★★★★</div>
+              <p className="text-base leading-7 text-gray-700">
+                “A really lovely idea. Quick, simple, and surprisingly calming.
+                It feels made for real evenings with real kids.”
+              </p>
+              <p className="mt-5 text-sm font-medium text-gray-500">
+                Emma, mum of two
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-20 max-w-5xl">
+          <div className="rounded-[32px] bg-white p-8 shadow-md md:p-10">
+            <div className="grid gap-6 text-center md:grid-cols-3">
+              <div>
+                <div className="mb-3 text-2xl">🔒</div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Child-friendly by design
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-gray-500">
+                  Gentle, bedtime-appropriate stories designed to feel safe and soothing.
+                </p>
+              </div>
+
+              <div>
+                <div className="mb-3 text-2xl">⚡</div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Ready in seconds
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-gray-500">
+                  No prep, no searching, no last-minute panic when it’s already bedtime.
+                </p>
+              </div>
+
+              <div>
+                <div className="mb-3 text-2xl">💜</div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Made for real routines
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-gray-500">
+                  Built to help busy parents create a calmer, more special end to the day.
+                </p>
+              </div>
             </div>
           </div>
         </section>
