@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { createClientInstance } from "@/lib/supabase/client";
 
 type StoryResult = {
   title: string;
@@ -15,7 +16,10 @@ export default function CreatePage() {
   const [tone, setTone] = useState<"sleepier" | "adventurous">("sleepier");
   const [storyResult, setStoryResult] = useState<StoryResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
+  const [saveError, setSaveError] = useState("");
+  const [saveMessage, setSaveMessage] = useState("");
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -25,6 +29,8 @@ export default function CreatePage() {
 
     setIsLoading(true);
     setError("");
+    setSaveError("");
+    setSaveMessage("");
     setStoryResult(null);
 
     try {
@@ -67,6 +73,8 @@ export default function CreatePage() {
     setTone("sleepier");
     setStoryResult(null);
     setError("");
+    setSaveError("");
+    setSaveMessage("");
   };
 
   const handleReadAgain = () => {
@@ -74,9 +82,47 @@ export default function CreatePage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleSaveStory = () => {
+  const handleSaveStory = async () => {
     if (!storyResult) return;
-    alert("Save Story will be connected to user accounts and library next.");
+
+    setIsSaving(true);
+    setSaveError("");
+    setSaveMessage("");
+
+    try {
+      const supabase = createClientInstance();
+
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+
+      if (userError || !user) {
+        setSaveError("You need to be logged in to save stories.");
+        return;
+      }
+
+      const { error } = await supabase.from("stories").insert({
+        user_id: user.id,
+        title: storyResult.title,
+        child_name: childName || null,
+        prompt: prompt || null,
+        story_text: storyResult.story,
+      });
+
+      if (error) {
+        setSaveError(error.message);
+        return;
+      }
+
+      setSaveMessage("Story saved successfully.");
+    } catch (err) {
+      setSaveError(
+        err instanceof Error ? err.message : "Could not save story."
+      );
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -92,7 +138,8 @@ export default function CreatePage() {
         <div className="rounded-[32px] bg-white p-8 shadow-sm md:p-10">
           <h1 className="text-4xl font-bold md:text-5xl">Create Your Story</h1>
           <p className="mt-4 max-w-2xl text-lg text-[#6b6780]">
-            Tell Snorii who the story is about and we’ll create a calming bedtime adventure.
+            Tell Snorii who the story is about and we’ll create a calming
+            bedtime adventure.
           </p>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -104,7 +151,7 @@ export default function CreatePage() {
                 type="text"
                 value={childName}
                 onChange={(e) => setChildName(e.target.value)}
-                placeholder="Example: Simon"
+                placeholder="Example: Ava"
                 className="w-full rounded-2xl border border-[#ddd6ea] px-5 py-4 outline-none focus:border-[#8b7cf6]"
               />
             </div>
@@ -210,6 +257,20 @@ export default function CreatePage() {
                   ))}
               </div>
 
+              <div className="mt-8">
+                {saveMessage ? (
+                  <div className="rounded-2xl border border-green-200 bg-green-50 p-4 text-green-700">
+                    {saveMessage}
+                  </div>
+                ) : null}
+
+                {saveError ? (
+                  <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-red-700">
+                    {saveError}
+                  </div>
+                ) : null}
+              </div>
+
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={handleReadAgain}
@@ -227,9 +288,10 @@ export default function CreatePage() {
 
                 <button
                   onClick={handleSaveStory}
-                  className="rounded-2xl bg-[#8b7cf6] px-5 py-3 font-semibold text-white transition hover:opacity-90"
+                  disabled={isSaving}
+                  className="rounded-2xl bg-[#8b7cf6] px-5 py-3 font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
                 >
-                  Save Story
+                  {isSaving ? "Saving..." : "Save Story"}
                 </button>
               </div>
             </article>

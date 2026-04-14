@@ -9,19 +9,28 @@ export default function Home() {
             🌙 Snorii
           </div>
 
-          <Link
-            href="/create"
-            className="text-sm font-medium text-gray-600 transition hover:text-gray-900"
-          >
-            Create story →
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/login"
+              className="text-sm font-medium text-gray-600 transition hover:text-gray-900"
+            >
+              Log in
+            </Link>
+
+            <Link
+              href="/create"
+              className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
+            >
+              Create story
+            </Link>
+          </div>
         </header>
 
         <section className="mx-auto max-w-3xl text-center">
           <div className="mb-5 text-4xl">🌙✨</div>
 
           <h1 className="text-5xl font-bold leading-tight tracking-tight md:text-6xl">
-            Create Tonight's Dreams
+            Create Tonight&apos;s Dreams
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
@@ -38,6 +47,13 @@ export default function Home() {
 
           <p className="mt-4 text-sm text-gray-500">
             Free to try • No signup needed • Safe, calming stories
+          </p>
+
+          <p className="mt-2 text-sm text-gray-500">
+            Already using Snorii?{" "}
+            <Link href="/login" className="underline underline-offset-4">
+              Log in
+            </Link>
           </p>
         </section>
 
@@ -94,7 +110,7 @@ export default function Home() {
                   </p>
 
                   <p>
-                    As Ava’s eyes grew heavier, the unicorn curled beside her
+                    As Ava&apos;s eyes grew heavier, the unicorn curled beside her
                     like a fluffy cloud. Wrapped in moonlight and quiet magic,
                     Ava drifted into the softest, happiest sleep, dreaming of
                     stars, meadows, and gentle midnight adventures.
@@ -113,7 +129,7 @@ export default function Home() {
           <div className="grid gap-6 md:grid-cols-3">
             <div className="rounded-3xl bg-white p-8 shadow-md">
               <div className="mb-3 text-2xl">✏️</div>
-              <p className="text-lg font-medium">Enter your child’s name</p>
+              <p className="text-lg font-medium">Enter your child&apos;s name</p>
             </div>
 
             <div className="rounded-3xl bg-white p-8 shadow-md">
@@ -185,7 +201,7 @@ export default function Home() {
             <div className="rounded-3xl bg-white p-8 shadow-md">
               <div className="mb-4 text-yellow-500">★★★★★</div>
               <p className="text-base leading-7 text-gray-700">
-                “This takes the pressure off when you’re exhausted and still want
+                “This takes the pressure off when you&apos;re exhausted and still want
                 bedtime to feel special.”
               </p>
               <p className="mt-5 text-sm font-medium text-gray-500">
@@ -225,7 +241,7 @@ export default function Home() {
                   Ready in seconds
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-gray-500">
-                  No prep, no searching, no last-minute panic when it’s already bedtime.
+                  No prep, no searching, no last-minute panic when it&apos;s already bedtime.
                 </p>
               </div>
 
@@ -253,6 +269,13 @@ export default function Home() {
           >
             Create your first story →
           </Link>
+
+          <p className="mt-4 text-sm text-gray-500">
+            Already have an account?{" "}
+            <Link href="/login" className="underline underline-offset-4">
+              Log in
+            </Link>
+          </p>
         </section>
       </div>
     </main>
